@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="eo_widget.manager.class">Eo\WidgetBundle\Manager\WidgetManager</parameter>
+        <parameter key="eo_widget.renderer.twig.class">Eo\WidgetBundle\Renderer\TwigRenderer</parameter>
+        <parameter key="eo_widget.twig.widget_extension.class">Eo\WidgetBundle\Twig\Extension\WidgetExtension</parameter>
+    </parameters>
+
+    <services>
+        <!-- Widget Manager -->
+        <service id="eo_widget.manager" class="%eo_widget.manager.class%">
+            <!-- Injecting container to avoid circular reference -->
+            <argument type="service" id="service_container"/>
+        </service>
+        <!-- Twig Renderer -->
+        <service id="eo_widget.renderer.twig" class="%eo_widget.renderer.twig.class%">
+            <tag name="eo_widget.renderer" />
+            <argument type="service" id="service_container"/>
+        </service>
+        <!-- Hello World Widget -->
+        <service id="eo_widget.hello_world" class="Eo\WidgetBundle\Widget\HelloWorldWidget" public="false">
+            <tag name="eo_widget.widget" />
+        </service>
+        <!-- Widget Extension -->
+        <service id="eo_widget.twig.widget_extension" class="%eo_widget.twig.widget_extension.class%">
+            <tag name="twig.extension" />
+            <argument type="service" id="eo_widget.manager"/>
+        </service>
+    </services>
+</container>
