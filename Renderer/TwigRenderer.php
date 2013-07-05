@@ -28,13 +28,12 @@ class TwigRenderer extends AbstractRenderer
         $this->container = $container;
     }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function render(WidgetInterface $widget)
-	{
+    /**
+     * {@inheritdoc}
+     */
+    public function render(WidgetInterface $widget)
+    {
         $template = $widget->getTemplate();
-        $options  = array();
-        return $this->container->get('templating.engine.twig')->render($template, $options);
-	}
+        return $this->container->get('templating.engine.twig')->render($template, array_merge(array('widget' => $widget), $widget->getRenderParameters()));
+    }
 }

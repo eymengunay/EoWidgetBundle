@@ -24,10 +24,7 @@ class WidgetExtension extends \Twig_Extension
     /**
      * @var array $options Array of default options that can be overriden with getters and in the construct.
      */
-    protected $options = array(
-        'ajax' => false,
-        'refresh' => false,
-    );
+    protected $options = array();
 
     /**
      * @var WidgetManager
@@ -67,12 +64,7 @@ class WidgetExtension extends \Twig_Extension
     public function renderWidget(\Twig_Environment $env, $context, $name, $options = array())
     {
         $options = array_merge($this->options, $options);
-
-        if ($options['ajax']) {
-            return '';
-        } else {
-            return $this->wm->render($name);
-        }
+        return $this->wm->render($name);
     }
 
     /**
