@@ -34,6 +34,6 @@ class TwigRenderer extends AbstractRenderer
     public function render(WidgetInterface $widget)
     {
         $template = $widget->getTemplate();
-        return $this->container->get('templating.engine.twig')->render($template, array_merge(array('widget' => $widget), $widget->getRenderParameters()));
+        return $this->container->get('templating')->render($template, array_merge(array('widget' => $widget), $widget->getRenderParameters()));
     }
 }
