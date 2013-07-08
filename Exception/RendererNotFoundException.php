@@ -12,8 +12,8 @@
 namespace Eo\WidgetBundle\Exception;
 
 /**
- * Eo\WidgetBundle\Exception\WidgetNotFoundException
+ * Eo\WidgetBundle\Exception\RendererNotFoundException
  */
-class WidgetNotFoundException extends NotFoundException
+class RendererNotFoundException extends NotFoundException
 {
 }

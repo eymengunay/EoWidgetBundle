@@ -21,6 +21,7 @@ class WidgetPass implements CompilerPassInterface
     {
         $manager = $container->getDefinition('eo_widget.manager');
 
+        // Add renderers
         $renderers = $container->findTaggedServiceIds('eo_widget.renderer');
         foreach ($renderers as $id => $attributes) {
             $manager->addMethodCall(
@@ -29,10 +30,20 @@ class WidgetPass implements CompilerPassInterface
             );
         }
 
+        // Add widgets
         $widgets = $container->findTaggedServiceIds('eo_widget.widget');
         foreach ($widgets as $id => $attributes) {
             $manager->addMethodCall(
                 'addWidget',
+                array(new Reference($id))
+            );
+        }
+
+        // Add storages
+        $storages = $container->findTaggedServiceIds('eo_widget.storage');
+        foreach ($storages as $id => $attributes) {
+            $manager->addMethodCall(
+                'addStorage',
                 array(new Reference($id))
             );
         }

@@ -12,6 +12,7 @@
 namespace Eo\WidgetBundle\Renderer;
 
 use Eo\WidgetBundle\Widget\WidgetInterface;
+use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractRenderer implements RendererInterface
 {
@@ -26,5 +27,5 @@ abstract class AbstractRenderer implements RendererInterface
 	/**
      * {@inheritdoc}
      */
-	abstract public function render(WidgetInterface $widget);
+	abstract public function render(WidgetInterface $widget, array $options, FormInterface $form = null);
 }

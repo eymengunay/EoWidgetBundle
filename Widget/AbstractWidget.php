@@ -11,6 +11,9 @@
 
 namespace Eo\WidgetBundle\Widget;
 
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormInterface;
+
 /**
  * AbstractWidget
  */
@@ -20,6 +23,11 @@ abstract class AbstractWidget implements WidgetInterface
      * @const DEFAULT_RENDERER
      */
     const DEFAULT_RENDERER = 'twig-renderer';
+
+    /**
+     * @const DEFAULT_STORAGE
+     */
+    const DEFAULT_STORAGE = 'session';
 
 	/**
 	 * @var string
@@ -35,6 +43,11 @@ abstract class AbstractWidget implements WidgetInterface
      * @var string
      */
     protected $renderer = self::DEFAULT_RENDERER;
+
+    /**
+     * @var string
+     */
+    protected $storage = self::DEFAULT_STORAGE;
 
     /**
      * {@inheritdoc}
@@ -60,10 +73,25 @@ abstract class AbstractWidget implements WidgetInterface
         return $this->renderer;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getStorage()
+    {
+        return $this->storage;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildOptionsForm(FormBuilder $builder)
+    {
+    }
+
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getRenderParameters()
+	public function getRenderParameters($options = array())
 	{
 		return array();
 	}

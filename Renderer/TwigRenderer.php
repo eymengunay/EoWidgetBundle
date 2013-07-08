@@ -13,6 +13,7 @@ namespace Eo\WidgetBundle\Renderer;
 
 use Eo\WidgetBundle\Widget\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormInterface;
 
 class TwigRenderer extends AbstractRenderer
 {
@@ -31,9 +32,15 @@ class TwigRenderer extends AbstractRenderer
     /**
      * {@inheritdoc}
      */
-    public function render(WidgetInterface $widget)
+    public function render(WidgetInterface $widget, array $options, FormInterface $form = null)
     {
-        $template = $widget->getTemplate();
-        return $this->container->get('templating')->render($template, array_merge(array('widget' => $widget), $widget->getRenderParameters()));
+        // Set parameters
+        $parameters = $widget->getRenderParameters($options);
+        $parameters['options'] = $options; // Reserved name "options"
+        $parameters['widget'] = $widget; // Reserved name "widget"
+        $parameters['form'] = $form->createView(); // Reserved name "form"
+        $parameters['unique'] = 'asssd'; // Reserved name "unique"
+
+        return $this->container->get('templating')->render($widget->getTemplate(), $parameters);
     }
 }

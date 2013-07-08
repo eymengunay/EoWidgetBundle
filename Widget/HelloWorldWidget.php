@@ -13,6 +13,8 @@ namespace Eo\WidgetBundle\Widget;
 
 use Eo\WidgetBundle\Annotation\Widget;
 use Eo\WidgetBundle\Renderer\SimpleWidgetRenderer;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * HelloWorldWidget
@@ -23,10 +25,23 @@ class HelloWorldWidget extends AbstractWidget
 
     protected $template = "EoWidgetBundle:WidgetHelloWorld:index.html.twig";
 
+    /**
+     * {@inheritdoc}
+     */
+    public function buildOptionsForm(FormBuilder $builder)
+    {
+    	$builder
+    		->add('name', 'text', array(
+    			'required' => false,
+    			'empty_data' => 'John'
+    		))
+    	;
+    }
+
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getRenderParameters()
+	public function getRenderParameters($options = array())
 	{
 		return array();
 	}

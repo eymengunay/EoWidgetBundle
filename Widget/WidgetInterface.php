@@ -11,6 +11,8 @@
 
 namespace Eo\WidgetBundle\Widget;
 
+use Symfony\Component\Form\FormBuilder;
+
 /**
  * WidgetInterface
  */
@@ -36,4 +38,11 @@ interface WidgetInterface
      * @return string
      */
     public function getRenderer();
+
+    /**
+     * Build options form
+     *
+     * @param FormBuilder $builder
+     */
+    public function buildOptionsForm(FormBuilder $builder);
 }

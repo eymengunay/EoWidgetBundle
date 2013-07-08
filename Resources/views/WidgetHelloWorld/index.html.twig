@@ -1,1 +1,8 @@
-Hello World
+{% use "EoWidgetBundle:Common:options_modal.html.twig" %}
+
+<div class="well">
+	<button type="button" class="btn" data-toggle="modal" data-target="#{{ unique }}"><i class="icon-cog"></i></button>
+	<hr />
+	<h2>Hello {{ options.name|default("unknown") }}</h2>
+</div>
+{{ block('options') }}

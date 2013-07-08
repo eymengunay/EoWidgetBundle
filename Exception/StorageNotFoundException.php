@@ -12,8 +12,8 @@
 namespace Eo\WidgetBundle\Exception;
 
 /**
- * Eo\WidgetBundle\Exception\WidgetNotFoundException
+ * Eo\WidgetBundle\Exception\StorageNotFoundException
  */
-class WidgetNotFoundException extends NotFoundException
+class StorageNotFoundException extends NotFoundException
 {
 }

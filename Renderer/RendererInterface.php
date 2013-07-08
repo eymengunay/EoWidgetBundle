@@ -12,6 +12,7 @@
 namespace Eo\WidgetBundle\Renderer;
 
 use Eo\WidgetBundle\Widget\WidgetInterface;
+use Symfony\Component\Form\FormInterface;
 
 interface RendererInterface
 {
@@ -24,8 +25,11 @@ interface RendererInterface
 
 	/**
 	 * Render widget
-	 *
+	 * 
+	 * @param  WidgetInterface $widget
+	 * @param  array           $options
+	 * @param  FormInterface   $form
 	 * @return mixed
 	 */
-	public function render(WidgetInterface $widget);
+	public function render(WidgetInterface $widget, array $options, FormInterface $form = null);
 }
