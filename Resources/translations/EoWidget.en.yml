@@ -1,5 +1,5 @@
 action:
-	widget:
-		options:
-			success: "Widget options successfully saved"
-			error: "An error occured while saving widget options. Please try again."
+    widget:
+        options:
+            success: "Widget options successfully saved"
+            error: "An error occured while saving widget options. Please try again."
