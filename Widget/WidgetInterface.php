@@ -26,6 +26,13 @@ interface WidgetInterface
     public function getName();
 
     /**
+     * Get async
+     *
+     * @return bool
+     */
+    public function getIsAsync();
+
+    /**
      * Get template
      *
      * @return string
@@ -45,4 +52,11 @@ interface WidgetInterface
      * @param FormBuilder $builder
      */
     public function buildOptionsForm(FormBuilder $builder);
+
+    /**
+     * Get data
+     *
+     * @return mixed
+     */
+    public function getData($options = array(), $isAsync = false);
 }

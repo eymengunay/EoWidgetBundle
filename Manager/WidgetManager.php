@@ -62,7 +62,6 @@ class WidgetManager
     /**
      * Add widget
      *
-     * @param  string $name
      * @param  WidgetInterface $widget
      * @return self
      */
@@ -91,7 +90,6 @@ class WidgetManager
     /**
      * Add renderer
      *
-     * @param  string $name
      * @param  RendererInterface $renderer
      * @return self
      */
@@ -120,7 +118,6 @@ class WidgetManager
     /**
      * Add storage
      *
-     * @param  string $name
      * @param  StorageInterface $storage
      * @return self
      */
@@ -194,6 +191,22 @@ class WidgetManager
     }
 
     /**
+     * Prepare widget options and form
+     * 
+     * @param  string $name
+     * @param  array  $options
+     * @return mixed
+     */
+    private function prepare($name, $options = array())
+    {
+        $widget = $this->getWidget($name);
+        $storage = $this->getStorage($widget->getStorage());
+        $form = $this->getOptionsForm($widget, $storage->findAll($widget));
+        $options = array_merge($this->getOptionsData($form), $options);
+        return array($widget, $storage, $form, $options);
+    }
+
+    /**
      * Render widget
      *
      * @param  string $name
@@ -202,11 +215,22 @@ class WidgetManager
      */
     public function render($name, $options = array())
     {
-        $widget = $this->getWidget($name);
-        $storage = $this->getStorage($widget->getStorage());
-        $form = $this->getOptionsForm($widget, $storage->findAll($widget));
-        $options = array_merge($this->getOptionsData($form), $options);
+        list($widget, $storage, $form, $options) = $this->prepare($name, $options);
         $renderer = $this->getRenderer($widget->getRenderer());
         return $renderer->render($widget, $options, $form);
+    }
+
+    /**
+     * Load widget data
+     *
+     * @param  string $name
+     * @param  array  $options
+     * @param  bool   $async
+     * @return mixed
+     */
+    public function data($name, $options = array(), $async = false)
+    {
+        list($widget, $storage, $form, $options) = $this->prepare($name, $options);
+        return $widget->getData($options, $async);
     }
 }

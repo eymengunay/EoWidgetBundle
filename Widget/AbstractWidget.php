@@ -34,6 +34,11 @@ abstract class AbstractWidget implements WidgetInterface
 	 */
 	protected $name;
 
+    /**
+     * @var bool
+     */
+    protected $isAsync = false;
+
 	/**
 	 * @var string
 	 */
@@ -55,6 +60,14 @@ abstract class AbstractWidget implements WidgetInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIsAsync()
+    {
+        return $this->isAsync;
     }
 
     /**
@@ -91,7 +104,7 @@ abstract class AbstractWidget implements WidgetInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getRenderParameters($options = array())
+	public function getData($options = array(), $isAsync = false)
 	{
 		return array();
 	}

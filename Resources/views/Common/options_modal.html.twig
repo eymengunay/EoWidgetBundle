@@ -1,6 +1,6 @@
 {% block options %}
 <div id="{{ unique }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form method="post" action="{{ path('eo_widget_form_options', {name: widget.name}) }}" class="no-margin">
+	<form method="post" action="{{ path('eo_widget_save_form_options', {name: widget.name}) }}" class="no-margin">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">Widget Options</h3>

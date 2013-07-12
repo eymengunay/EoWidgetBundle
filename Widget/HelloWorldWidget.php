@@ -41,7 +41,7 @@ class HelloWorldWidget extends AbstractWidget
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getRenderParameters($options = array())
+	public function getData($options = array(), $isAsync = false)
 	{
 		return array();
 	}

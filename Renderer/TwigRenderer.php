@@ -35,11 +35,18 @@ class TwigRenderer extends AbstractRenderer
     public function render(WidgetInterface $widget, array $options, FormInterface $form = null)
     {
         // Set parameters
-        $parameters = $widget->getRenderParameters($options);
-        $parameters['options'] = $options; // Reserved name "options"
-        $parameters['widget'] = $widget; // Reserved name "widget"
-        $parameters['form'] = $form->createView(); // Reserved name "form"
-        $parameters['unique'] = 'asssd'; // Reserved name "unique"
+        $parameters = array(
+            'data'      => $widget->getData($options, false),
+            'options'   => $options,
+            'widget'    => $widget,
+            'form'      => $form->createView(),
+            // You can use this variable (eg. in your js) if you need to 
+            // render the same widget multiple times.
+            // It has a non-numerical prefix just to make sure 
+            // that the value always starts with a letter. 
+            // Might be useful if you need to use it as HTML id attribute
+            'unique'    => "w".uniqid(),
+        );
 
         return $this->container->get('templating')->render($widget->getTemplate(), $parameters);
     }

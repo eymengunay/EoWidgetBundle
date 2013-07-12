@@ -1,3 +1,11 @@
-eo_widget_form_options:
+eo_widget_save_form_options:
     pattern:  /widget/form/{name}
-    defaults: { _controller: EoWidgetBundle:Widget:form }
+    defaults: { _controller: EoWidgetBundle:Widget:saveForm }
+
+eo_widget_render:
+    pattern:  /widget/render/{name}
+    defaults: { _controller: EoWidgetBundle:Widget:render }
+
+eo_widget_data:
+    pattern:  /widget/data/{name}.{format}
+    defaults: { _controller: EoWidgetBundle:Widget:data, format: "json" }
