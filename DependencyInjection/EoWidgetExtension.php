@@ -33,5 +33,7 @@ class EoWidgetExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('eo_widget.i18n_catalog', $config['i18n_catalog']);
     }
 }

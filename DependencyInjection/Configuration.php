@@ -29,6 +29,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('eo_widget');
 
+        $rootNode
+        	->children()
+        		->scalarNode('i18n_catalog')->defaultValue('EoWidget')
+        	->end()
+        ;
+
         return $treeBuilder;
     }
 }
